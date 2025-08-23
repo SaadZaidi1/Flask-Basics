@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Market Items</h2>
+    <div class="row">
+        {% for item in items %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">${{ item.price }}</p>
+                        <p class="card-text"><small class="text-muted">{{ item.stock }} in stock</small></p>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#itemModal{{ item.id }}">
+                                More Info
+                            </button>
+                            <button type="button" class="btn btn-success btn-sm">
+                                Purchase
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-info">No items available</div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal for item details -->
+    {% for item in items %}
+    <div class="modal fade" id="itemModal{{ item.id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ item.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Price:</strong> ${{ item.price }}</p>
+                    <p><strong>Stock:</strong> {{ item.stock }} available</p>
+                    <p><strong>Description:</strong> {{ item.description or "No description available" }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Purchase</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
