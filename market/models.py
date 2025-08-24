@@ -1,4 +1,4 @@
-from market import db
+from market import db, bcrypt
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -11,7 +11,6 @@ class Item(db.Model):
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.stock})"
 
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(length=30), nullable=False, unique=True)
@@ -22,3 +21,11 @@ class User(db.Model):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email_address}')"
+    
+    @property
+    def password(self):
+        raise AttributeError('Password is not a readable attribute!')
+
+    @password.setter
+    def password(self, plain_text_password):
+        self.password_hash = bcrypt.generate_password_hash(plain_text_password).decode('utf-8')
