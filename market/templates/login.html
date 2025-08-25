@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Register - Market
+    Login - Market
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
             <div class="card shadow">
                 <div class="card-header text-white" style="background: linear-gradient(135deg, #667eea, #764ba2);">
                     <h3 class="card-title mb-0">
-                        <i class="fas fa-user-plus me-2"></i>Create Account
+                        <i class="fas fa-sign-in-alt me-2"></i>Welcome Back
                     </h3>
                 </div>
                 <div class="card-body">
@@ -27,29 +27,11 @@
                             {% endfor %}
                         </div>
 
-                        <!-- Email Field -->
-                        <div class="mb-3">
-                            {{ form.email_address.label(class="form-label") }}
-                            {{ form.email_address(class="form-control") }}
-                            {% for error in form.email_address.errors %}
-                                <div class="text-danger small">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-
                         <!-- Password Field -->
                         <div class="mb-3">
-                            {{ form.password1.label(class="form-label") }}
-                            {{ form.password1(class="form-control") }}
-                            {% for error in form.password1.errors %}
-                                <div class="text-danger small">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-
-                        <!-- Confirm Password Field -->
-                        <div class="mb-3">
-                            {{ form.password2.label(class="form-label") }}
-                            {{ form.password2(class="form-control") }}
-                            {% for error in form.password2.errors %}
+                            {{ form.password.label(class="form-label") }}
+                            {{ form.password(class="form-control", type="password") }}
+                            {% for error in form.password.errors %}
                                 <div class="text-danger small">{{ error }}</div>
                             {% endfor %}
                         </div>
@@ -62,8 +44,8 @@
                 </div>
                 <div class="card-footer text-center">
                     <small class="text-muted">
-                        Already have an account? 
-                        <a href="{{ url_for('login_page') }}" class="text-decoration-none">Sign in here</a>
+                        Don't have an account? 
+                        <a href="{{ url_for('register_page') }}" class="text-decoration-none">Create one here</a>
                     </small>
                 </div>
             </div>

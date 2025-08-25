@@ -1,8 +1,148 @@
 {% extends "base.html" %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}
+    Contact Us - Market
+{% endblock %}
 
 {% block content %}
-  <h1>Contact Us</h1>
-  <p>Get in touch at <a href="mailto:example@email.com">example@email.com</a>.</p>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="contact-form">
+            <h1 class="display-5 fw-bold mb-4" style="background: linear-gradient(135deg, #667eea, #764ba2); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Get In Touch
+            </h1>
+            <p class="lead text-muted mb-4">
+                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            </p>
+            
+            <form class="contact-form-container p-4" style="background: linear-gradient(45deg, #667eea10, #764ba210); border-radius: 15px; border: 1px solid #e9ecef;">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label fw-bold">First Name</label>
+                        <input type="text" class="form-control custom-input" id="firstName" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label fw-bold">Last Name</label>
+                        <input type="text" class="form-control custom-input" id="lastName" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="email" class="form-label fw-bold">Email Address</label>
+                        <input type="email" class="form-control custom-input" id="email" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="subject" class="form-label fw-bold">Subject</label>
+                        <input type="text" class="form-control custom-input" id="subject" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="message" class="form-label fw-bold">Message</label>
+                        <textarea class="form-control custom-input" id="message" rows="5" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-lg custom-btn">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="contact-info">
+            <h3 class="fw-bold mb-4" style="color: #667eea;">Contact Information</h3>
+            
+            <div class="info-card mb-4 p-4" style="background: linear-gradient(45deg, #667eea20, #764ba220); border-radius: 15px;">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-bg me-3" style="background: linear-gradient(135deg, #667eea, #764ba2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-envelope text-white"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold">Email</h6>
+                        <a href="mailto:support@market.com" class="text-decoration-none" style="color: #667eea;">support@market.com</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card mb-4 p-4" style="background: linear-gradient(45deg, #764ba220, #667eea20); border-radius: 15px;">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-bg me-3" style="background: linear-gradient(135deg, #764ba2, #667eea); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-phone text-white"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold">Phone</h6>
+                        <span class="text-muted">+1 (555) 123-4567</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card mb-4 p-4" style="background: linear-gradient(45deg, #667eea20, #764ba220); border-radius: 15px;">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-bg me-3" style="background: linear-gradient(135deg, #667eea, #764ba2); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-clock text-white"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold">Business Hours</h6>
+                        <span class="text-muted">Mon - Fri: 9AM - 6PM</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links text-center mt-4">
+                <h6 class="fw-bold mb-3">Follow Us</h6>
+                <a href="#" class="social-link me-3" style="color: #667eea;"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="social-link me-3" style="color: #764ba2;"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="social-link me-3" style="color: #667eea;"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="social-link" style="color: #764ba2;"><i class="fab fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-input {
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 12px 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .custom-input:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .custom-btn {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .custom-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        color: white;
+    }
+    
+    .info-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .social-link {
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+    
+    .social-link:hover {
+        transform: translateY(-3px);
+        color: #667eea !important;
+    }
+</style>
 {% endblock %}

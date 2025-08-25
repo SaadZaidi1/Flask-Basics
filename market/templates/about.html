@@ -1,8 +1,109 @@
 {% extends "base.html" %}
 
-{% block title %}About{% endblock %}
+{% block title %}
+    About Us - Market
+{% endblock %}
 
 {% block content %}
-  <h1>About Us</h1>
-  <p>This is the About page. The navbar is automatically included from <b>base.html</b>.</p>
+<div class="row align-items-center mb-5">
+    <div class="col-lg-6">
+        <div class="about-content">
+            <h1 class="display-4 fw-bold mb-4" style="background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                About Market
+            </h1>
+            <p class="lead text-muted mb-4">
+                We're passionate about bringing you the best shopping experience with quality products and exceptional service.
+            </p>
+            <p class="text-muted mb-4">
+                Founded with a vision to revolutionize online shopping, Market has grown to become a trusted platform 
+                where customers can find everything they need in one place. Our commitment to quality, affordability, 
+                and customer satisfaction sets us apart.
+            </p>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="about-image text-center">
+            <div class="icon-container p-5" style="background: linear-gradient(135deg, #667eea20, #764ba220); border-radius: 20px;">
+                <i class="fas fa-store fa-5x" style="color: #667eea;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-5">
+    <div class="col-md-6">
+        <div class="card border-0 h-100" style="background: linear-gradient(45deg, #667eea10, #764ba210); border-radius: 15px;">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-bg me-3" style="background: linear-gradient(135deg, #667eea, #764ba2); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-bullseye text-white"></i>
+                    </div>
+                    <h4 class="mb-0 fw-bold">Our Mission</h4>
+                </div>
+                <p class="text-muted">
+                    To provide an exceptional online shopping experience with quality products, 
+                    competitive prices, and outstanding customer service that exceeds expectations.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card border-0 h-100" style="background: linear-gradient(45deg, #764ba210, #667eea10); border-radius: 15px;">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="icon-bg me-3" style="background: linear-gradient(135deg, #764ba2, #667eea); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-eye text-white"></i>
+                    </div>
+                    <h4 class="mb-0 fw-bold">Our Vision</h4>
+                </div>
+                <p class="text-muted">
+                    To become the leading online marketplace that connects people with the products they love, 
+                    making shopping convenient, enjoyable, and accessible to everyone.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center py-5" style="background: linear-gradient(135deg, #667eea20, #764ba220); border-radius: 20px;">
+    <h3 class="mb-3 fw-bold" style="color: #667eea;">Why Choose Market?</h3>
+    <div class="row g-3 mt-4">
+        <div class="col-md-3 col-6">
+            <i class="fas fa-medal fa-2x mb-2" style="color: #764ba2;"></i>
+            <h6 class="fw-bold">Quality Products</h6>
+        </div>
+        <div class="col-md-3 col-6">
+            <i class="fas fa-shipping-fast fa-2x mb-2" style="color: #667eea;"></i>
+            <h6 class="fw-bold">Fast Shipping</h6>
+        </div>
+        <div class="col-md-3 col-6">
+            <i class="fas fa-lock fa-2x mb-2" style="color: #764ba2;"></i>
+            <h6 class="fw-bold">Secure Payments</h6>
+        </div>
+        <div class="col-md-3 col-6">
+            <i class="fas fa-heart fa-2x mb-2" style="color: #667eea;"></i>
+            <h6 class="fw-bold">Customer Care</h6>
+        </div>
+    </div>
+</div>
+
+<style>
+    .icon-container {
+        transition: transform 0.3s ease;
+    }
+    
+    .icon-container:hover {
+        transform: scale(1.05);
+    }
+    
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+</style>
 {% endblock %}
