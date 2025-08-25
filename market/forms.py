@@ -21,3 +21,15 @@ class RegisterForm(FlaskForm):
     password1 = PasswordField(label='Password', validators=[Length(min=6), DataRequired()])
     password2 = PasswordField(label='Confirm Password', validators=[EqualTo('password1'), DataRequired()])
     submit = SubmitField(label='Create Account')
+
+
+class LoginForm(FlaskForm):
+    def validate_username(self, user_name_check):
+        user = User.query.filter_by(username=user_name_check.data).first()
+        if not user:
+            raise ValidationError(f'{user_name_check} does not exists. Try using a different username')
+        
+    username = StringField(label='Username', validators=[Length(min=2, max=30), DataRequired()])
+    password = PasswordField(label='Password', validators=[Length(min=6), DataRequired()])
+    submit = SubmitField(label='Sign In')
+        
