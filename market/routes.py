@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, flash
 from market import app, db
 from market.models import Item, User
 from market.forms import RegisterForm, LoginForm
-from flask_login import login_user
+from flask_login import login_user, logout_user, current_user
 
 @app.route('/')
 @app.route('/home')
@@ -53,3 +53,9 @@ def login_page():
         for err_msg in form.errors.values():
             flash(f'There was a problem logging in {err_msg}', category='danger')
     return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout_page():
+    logout_user()
+    flash('You have been logged out successfully!', category='info')
+    return redirect(url_for('home_page'))
