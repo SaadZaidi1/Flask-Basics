@@ -1,8 +1,8 @@
-from flask import render_template, url_for, redirect, flash
+from flask import render_template, url_for, redirect, flash, request
 from market import app, db
 from market.models import Item, User
 from market.forms import RegisterForm, LoginForm
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 @app.route('/')
 @app.route('/home')
@@ -59,3 +59,57 @@ def logout_page():
     logout_user()
     flash('You have been logged out successfully!', category='info')
     return redirect(url_for('home_page'))
+
+@app.route('/cart')
+@login_required
+def cart_page():
+    return render_template('cart.html')
+
+@app.route('/add_to_cart/<int:item_id>', methods=['POST'])
+@login_required
+def add_to_cart(item_id):
+    item_to_add = Item.query.get_or_404(item_id)
+    if item_to_add.stock > 0 and item_to_add.owner != current_user.id:
+        # Check if user already owns this item
+        if item_to_add not in current_user.items:
+            item_to_add.owner = current_user.id
+            item_to_add.stock -= 1
+            db.session.commit()
+            flash(f'{item_to_add.name} has been added to your cart!', category='success')
+        else:
+            flash(f'{item_to_add.name} is already in your cart!', category='info')
+    elif item_to_add.stock == 0:
+        flash(f'{item_to_add.name} is out of stock!', category='danger')
+    else:
+        flash('Cannot add your own item to cart!', category='danger')
+    
+    return redirect(url_for('market_page'))
+
+@app.route('/remove_from_cart/<int:item_id>', methods=['POST'])
+@login_required
+def remove_from_cart(item_id):
+    item_to_remove = Item.query.get_or_404(item_id)
+    if item_to_remove in current_user.items:
+        item_to_remove.owner = None
+        item_to_remove.stock += 1
+        db.session.commit()
+        flash(f'{item_to_remove.name} has been removed from your cart!', category='info')
+    else:
+        flash('Item not found in your cart!', category='danger')
+    
+    return redirect(url_for('cart_page'))
+
+@app.route('/checkout', methods=['POST'])
+@login_required
+def checkout():
+    total_cost = sum(item.price for item in current_user.items)
+    total_with_tax = total_cost * 1.1  # 10% tax
+    
+    if current_user.budget >= total_with_tax:
+        current_user.budget -= int(total_with_tax)
+        db.session.commit()
+        flash(f'Congratulations! You have successfully purchased {len(current_user.items)} items for ${total_with_tax:.2f}!', category='success')
+        return redirect(url_for('market_page'))
+    else:
+        flash('Insufficient budget to complete this purchase!', category='danger')
+        return redirect(url_for('cart_page'))

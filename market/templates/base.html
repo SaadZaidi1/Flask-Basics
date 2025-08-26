@@ -131,6 +131,11 @@
         <ul class="navbar-nav ms-auto">
           {% if current_user.is_authenticated %}
             <!-- User is logged in -->
+            <li class="nav-item me-2">
+              <a class="nav-link" href="{{ url_for('cart_page') }}">
+                <i class="fas fa-shopping-cart me-1"></i>Cart
+              </a>
+            </li>
             <li class="nav-item dropdown me-2">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-user-circle me-1"></i>{{ current_user.username }}

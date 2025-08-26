@@ -45,9 +45,18 @@
                         <button type="button" class="btn btn-outline-primary rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#itemModal{{ item.id }}">
                             <i class="fas fa-info-circle me-1"></i>More Info
                         </button>
-                        <button type="button" class="btn rounded-pill" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none;">
-                            <i class="fas fa-shopping-cart me-1"></i>Purchase
-                        </button>
+                        {% if current_user.is_authenticated %}
+                            <form method="POST" action="{{ url_for('add_to_cart', item_id=item.id) }}" style="flex: 1;">
+                                <button type="submit" class="btn rounded-pill w-100" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none;" {% if item.stock == 0 %}disabled{% endif %}>
+                                    <i class="fas fa-shopping-cart me-1"></i>
+                                    {% if item.stock == 0 %}Out of Stock{% else %}Add to Cart{% endif %}
+                                </button>
+                            </form>
+                        {% else %}
+                            <a href="{{ url_for('login_page') }}" class="btn rounded-pill" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; text-decoration: none; flex: 1;">
+                                <i class="fas fa-sign-in-alt me-1"></i>Login to Purchase
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -100,9 +109,17 @@
                 <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">
                     <i class="fas fa-times me-1"></i>Close
                 </button>
-                <button type="button" class="btn rounded-pill" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none;">
-                    <i class="fas fa-shopping-cart me-1"></i>Add to Cart
-                </button>
+                {% if current_user.is_authenticated %}
+                    <form method="post" action="{{ url_for('add_to_cart', item_id=item.id) }}" style="display: inline;">
+                        <button type="submit" class="btn rounded-pill" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none;">
+                            <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{{ url_for('login_page') }}" class="btn rounded-pill" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; text-decoration: none;">
+                        <i class="fas fa-sign-in-alt me-1"></i>Login to Purchase
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
