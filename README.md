@@ -1,4 +1,4 @@
-# Flask-Basics Marketplace
+# Flask-Starter-Kit Marketplace
 
 Welcome to **Flask-Basics** — a learning-focused project built to explore the fundamentals and advanced features of the Flask web framework. This project implements a simple marketplace where users can buy and sell items, and it demonstrates a variety of full-stack development concepts.
 
@@ -53,8 +53,8 @@ The project takes the shape of a **marketplace app** where users can list items 
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/SaadZaidi1/Flask-Basics.git
-    cd Flask-Basics
+    git clone https://github.com/SaadZaidi1/Flask-Starter-Kit.git
+    cd Flask-Starter-Kit
     ```
 
 2. **Install requirements**
