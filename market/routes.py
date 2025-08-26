@@ -63,7 +63,17 @@ def logout_page():
 @app.route('/cart')
 @login_required
 def cart_page():
-    return render_template('cart.html')
+    # Calculate total price of items in cart
+    total_price = sum(item.price for item in current_user.items)
+    tax = total_price * 0.1
+    total_with_tax = total_price + tax
+    remaining_budget = current_user.budget - total_with_tax
+    
+    return render_template('cart.html', 
+                         total_price=total_price, 
+                         tax=tax, 
+                         total_with_tax=total_with_tax,
+                         remaining_budget=remaining_budget)
 
 @app.route('/add_to_cart/<int:item_id>', methods=['POST'])
 @login_required
@@ -103,12 +113,11 @@ def remove_from_cart(item_id):
 @login_required
 def checkout():
     total_cost = sum(item.price for item in current_user.items)
-    total_with_tax = total_cost * 1.1  # 10% tax
-    
-    if current_user.budget >= total_with_tax:
-        current_user.budget -= int(total_with_tax)
+
+    if current_user.budget >= total_cost:
+        current_user.budget -= int(total_cost)
         db.session.commit()
-        flash(f'Congratulations! You have successfully purchased {len(current_user.items)} items for ${total_with_tax:.2f}!', category='success')
+        flash(f'Congratulations! You have successfully purchased {len(current_user.items)} items for ${total_cost:.2f}!', category='success')
         return redirect(url_for('market_page'))
     else:
         flash('Insufficient budget to complete this purchase!', category='danger')

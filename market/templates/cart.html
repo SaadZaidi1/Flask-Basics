@@ -78,7 +78,7 @@
                     <hr style="border-color: #667eea;">
                     <div class="summary-row d-flex justify-content-between mb-4">
                         <h5 class="fw-bold">Total:</h5>
-                        <h5 class="fw-bold" style="color: #667eea;">${{ "%.2f"|format(total_price * 1.1) }}</h5>
+                        <h5 class="fw-bold" style="color: #667eea;">${{ "%.2f"|format(total_price) }}</h5>
                     </div>
                     
                     <div class="budget-info mb-4 p-3" style="background: linear-gradient(45deg, #667eea10, #764ba210); border-radius: 10px;">
@@ -86,7 +86,7 @@
                             <span class="fw-bold">Your Budget:</span>
                             <span class="fw-bold" style="color: #28a745;">${{ current_user.budget }}</span>
                         </div>
-                        {% set remaining_budget = current_user.budget - (total_price * 1.1) %}
+                        {% set remaining_budget = current_user.budget - (total_price) %}
                         <div class="d-flex justify-content-between">
                             <span>After Purchase:</span>
                             <span class="fw-bold {% if remaining_budget >= 0 %}text-success{% else %}text-danger{% endif %}">
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     
-                    {% if current_user.budget >= (total_price * 1.1) %}
+                    {% if current_user.budget >= (total_price) %}
                         <form method="POST" action="{{ url_for('checkout') }}">
                             <button type="submit" class="btn btn-lg w-100 mb-3" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 25px; padding: 15px;">
                                 <i class="fas fa-credit-card me-2"></i>Proceed to Checkout
